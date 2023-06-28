@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="dot_selected_color_light">@color/md_theme_dark_primary</color>
+</resources>

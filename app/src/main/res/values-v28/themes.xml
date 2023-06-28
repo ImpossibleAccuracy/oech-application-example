@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.OechApp.OnBoard.Title" parent="Base.Theme.OechApp.OnBoard.Title">
+        <item name="android:textFontWeight">700</item>
+    </style>
+
+    <style name="Theme.OechApp.OnBoard.Label" parent="Base.Theme.OechApp.OnBoard.Label">
+        <item name="android:textFontWeight">500</item>
+    </style>
+
+</resources>

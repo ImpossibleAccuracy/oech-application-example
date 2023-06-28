@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:orientation="vertical">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingHorizontal="@dimen/activity_onboard_padding_horizontal"
+        android:paddingTop="@dimen/activity_onboard_padding_vertical">
+
+        <include
+            android:id="@+id/content"
+            layout="@layout/layout_onboard_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/controls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/activity_onboard_padding_horizontal"
+        android:paddingBottom="@dimen/activity_onboard_padding_vertical">
+
+        <include layout="@layout/layout_signup_actions" />
+    </LinearLayout>
+</LinearLayout>

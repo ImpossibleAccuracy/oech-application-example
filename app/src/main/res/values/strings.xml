@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">OechApp</string>
+
+    <!--  Title  -->
+    <string name="title_sign_up">Sign Up</string>
+
+    <!--  Action  -->
+    <string name="action_skip">Skip</string>
+    <string name="action_next">Next</string>
+    <string name="action_sign_in">Sign in</string>
+
+    <!--  Label  -->
+    <string name="label_already_registered">Already have an account?</string>
+
+    <!--  ONBOARD  -->
+    <string name="title_onboard_1">Quick Delivery At Your Doorstep</string>
+    <string name="title_onboard_2">Flexible Payment</string>
+    <string name="title_onboard_3">Real-time Tracking</string>
+    <string name="desc_onboard_1">Enjoy quick pick-up and delivery to your destination</string>
+    <string name="desc_onboard_2">Different modes of payment either before and after delivery without stress</string>
+    <string name="desc_onboard_3">Track your packages/items from the comfort of your home till final destination</string>
+</resources>
