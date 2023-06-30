@@ -2,8 +2,12 @@
 <resources>
 
     <style name="Base.Theme.OechApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:textColorPrimary">@color/md_theme_light_textPrimary</item>
+        <item name="android:textColorSecondary">@color/md_theme_light_textSecondary</item>
+
         <item name="colorPrimary">@color/md_theme_light_primary</item>
         <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
+        <item name="colorPrimaryDark">@color/md_theme_light_primaryDark</item>
         <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
         <item name="colorOnPrimaryContainer">@color/md_theme_light_onPrimaryContainer</item>
         <item name="colorSecondary">@color/md_theme_light_secondary</item>
@@ -34,30 +38,58 @@
         <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
 
-    <style name="Base.Theme.OechApp.OnBoard.Title" parent="TextAppearance.Material3.HeadlineSmall">
-        <item name="android:textColor">?attr/colorPrimary</item>
-        <item name="android:textSize">24sp</item>
+    <style name="Theme.OechApp" parent="Base.Theme.OechApp">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
-    <style name="Base.Theme.OechApp.OnBoard.Description" parent="TextAppearance.Material3.HeadlineSmall">
-        <item name="android:textColor">@color/description_color_light</item>
-        <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="Base.Theme.OechApp.OnBoard.Label" parent="TextAppearance.Material3.LabelMedium">
-        <item name="android:textSize">14sp</item>
-    </style>
+    <style name="Theme.OechApp.SplashTheme" parent="Base.Theme.OechApp.SplashTheme" />
 
     <style name="Theme.OechApp.RoundedImageOverlay">
         <item name="cornerSize">50%</item>
     </style>
 
-    <style name="Theme.OechApp" parent="Base.Theme.OechApp">
-        <item name="fontFamily">@font/roboto</item>
-        <item name="android:fontFamily">@font/roboto</item>
+    <!--  Text appearance  -->
+    <style name="Base.Theme.OechApp.Title" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
-    <style name="Theme.OechApp.SplashTheme" parent="Base.Theme.OechApp.SplashTheme" />
+    <style name="Base.Theme.OechApp.Description" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="android:textColor">@color/description_color</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Base.Theme.OechApp.Label" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+
+    <style name="Base.Theme.OechApp.LargeLabel" parent="Base.Theme.OechApp.Label">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Base.Theme.OechApp.SmallLabel" parent="Base.Theme.OechApp.Label">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Base.Theme.OechApp.OnBoard.Title" parent="Base.Theme.OechApp.Title" />
+
+    <style name="Base.Theme.OechApp.OnBoard.Description" parent="Base.Theme.OechApp.Description" />
+
+    <style name="Base.Theme.OechApp.OnBoard.Label" parent="Base.Theme.OechApp.Label" />
+
+    <!-- Text appearance Impl  -->
+    <style name="Theme.OechApp.Title" parent="Base.Theme.OechApp.Title" />
+
+    <style name="Theme.OechApp.Description" parent="Base.Theme.OechApp.Description" />
+
+    <style name="Theme.OechApp.Label" parent="Base.Theme.OechApp.Label" />
+
+    <style name="Theme.OechApp.LargeLabel" parent="Base.Theme.OechApp.LargeLabel" />
+
+    <style name="Theme.OechApp.SmallLabel" parent="Base.Theme.OechApp.SmallLabel" />
 
     <style name="Theme.OechApp.OnBoard.Title" parent="Base.Theme.OechApp.OnBoard.Title" />
 

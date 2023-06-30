@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="Theme.OechApp.Title" parent="Base.Theme.OechApp.Title">
+        <item name="android:textFontWeight">500</item>
+    </style>
+
+    <style name="Theme.OechApp.SmallLabel" parent="Base.Theme.OechApp.SmallLabel">
+        <item name="android:textFontWeight">400</item>
+    </style>
+
+    <style name="Theme.OechApp.LargeLabel" parent="Base.Theme.OechApp.LargeLabel">
+        <item name="android:textFontWeight">500</item>
+    </style>
+
     <style name="Theme.OechApp.OnBoard.Title" parent="Base.Theme.OechApp.OnBoard.Title">
         <item name="android:textFontWeight">700</item>
     </style>

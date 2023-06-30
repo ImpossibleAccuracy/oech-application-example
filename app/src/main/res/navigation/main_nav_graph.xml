@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/nav_main">
+
+    <fragment
+        android:id="@+id/nav_main"
+        android:name="com.example.oechapp.ui.fragment.main.MainFragment" />
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.example.oechapp.ui.fragment.profile.ProfileFragment" />
+
+    <fragment
+        android:id="@+id/nav_wallet"
+        android:name="com.example.oechapp.ui.fragment.wallet.WalletFragment" />
+
+    <fragment
+        android:id="@+id/nav_track"
+        android:name="com.example.oechapp.ui.fragment.track.TrackFragment" />
+</navigation>
