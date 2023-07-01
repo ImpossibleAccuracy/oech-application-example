@@ -37,6 +37,16 @@
 
         <activity
             android:name=".ui.activity.payment.AddPaymentMethodActivity"
+            android:exported="false"
+            android:label="" />
+
+        <activity
+            android:name=".ui.activity.notification.NotificationsActivity"
+            android:exported="false"
+            android:label="@string/title_notification" />
+
+        <activity
+            android:name=".ui.activity.send_package.SendPackageActivity"
             android:exported="false" />
 
         <activity

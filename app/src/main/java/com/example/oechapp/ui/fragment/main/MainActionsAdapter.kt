@@ -2,9 +2,8 @@ package com.example.oechapp.ui.fragment.main
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.example.oechapp.databinding.ItemMainActionBinding
 import com.example.oechapp.ui.utils.themeRes
 import com.google.android.material.R as MaterialRes
@@ -12,39 +11,42 @@ import com.google.android.material.R as MaterialRes
 class MainActionsAdapter(
     private val context: Context,
     private val actions: List<MainAction>
-) : BaseAdapter() {
+) : RecyclerView.Adapter<MainActionViewHolder>() {
     private val inflater = LayoutInflater.from(context)
 
     private var selectedItem: Int? = null
 
-    override fun getCount(): Int = actions.size
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainActionViewHolder {
+        val binding = ItemMainActionBinding.inflate(inflater, parent, false)
+        return MainActionViewHolder(context, binding)
+    }
 
-    override fun getItem(position: Int): MainAction = actions[position]
+    override fun getItemCount(): Int = actions.size
 
-    override fun getItemId(position: Int): Long = position.toLong()
+    override fun onBindViewHolder(holder: MainActionViewHolder, position: Int) {
+        val action = actions[position]
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val binding =
-            if (convertView == null) ItemMainActionBinding.inflate(inflater, parent, false)
-            else ItemMainActionBinding.bind(convertView)
+        holder.bind(action)
+        holder.updateCardColors(selectedItem == position)
 
-        val action = getItem(position)
+        holder.binding.root.setOnClickListener {
+            selectedItem = holder.adapterPosition
+            notifyDataSetChanged()
 
+            action.action.invoke()
+        }
+    }
+}
+
+class MainActionViewHolder(val context: Context, val binding: ItemMainActionBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+    fun bind(action: MainAction) {
         binding.icon.setImageResource(action.icon)
         binding.title.setText(action.title)
         binding.descriptino.setText(action.description)
-
-        updateCardColors(selectedItem == position, binding)
-
-        binding.root.setOnClickListener {
-            selectedItem = position
-            notifyDataSetChanged()
-        }
-
-        return binding.root
     }
 
-    private fun updateCardColors(isSelected: Boolean, binding: ItemMainActionBinding) {
+    fun updateCardColors(isSelected: Boolean) {
         if (isSelected) {
             binding.root.setCardBackgroundColor(context.themeRes(MaterialRes.attr.colorPrimary))
             binding.icon.setColorFilter(context.themeRes(MaterialRes.attr.colorOnPrimary))

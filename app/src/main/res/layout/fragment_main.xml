@@ -74,16 +74,14 @@
                 android:textAppearance="@style/Theme.OechApp.LargeLabel"
                 android:textColor="?attr/colorPrimary" />
 
-            <GridView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/actions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:horizontalSpacing="12dp"
-                android:numColumns="2"
+                android:nestedScrollingEnabled="false"
                 android:overScrollMode="never"
                 android:scrollbars="none"
-                android:verticalSpacing="12dp"
                 tools:listitem="@layout/item_main_action" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

@@ -13,9 +13,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.oechapp.R
 import com.example.oechapp.databinding.FragmentProfileBinding
 import com.example.oechapp.ui.activity.auth.AuthActivity
+import com.example.oechapp.ui.activity.notification.NotificationsActivity
+import com.example.oechapp.ui.activity.payment.AddPaymentMethodActivity
+import com.example.oechapp.ui.utils.MarginItemDecoration
+import com.example.oechapp.ui.utils.dp
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -23,12 +29,68 @@ import kotlinx.coroutines.launch
 class ProfileFragment : Fragment() {
     private val viewModel: ProfileViewModel by viewModels()
 
+    private val options = listOf(
+        ProfileOption(
+            R.drawable.ic_profile,
+            R.string.action_open_edit_profile,
+            R.string.desc_open_edit_profile,
+        ) {
+
+        },
+        ProfileOption(
+            R.drawable.ic_reports,
+            R.string.action_open_reports,
+            R.string.desc_open_reports,
+        ) {
+
+        },
+        ProfileOption(
+            R.drawable.ic_notification,
+            R.string.action_open_notifications,
+            R.string.desc_open_notifications,
+        ) {
+            val intent = Intent(requireContext(), NotificationsActivity::class.java)
+            startActivity(intent)
+        },
+        ProfileOption(
+            R.drawable.ic_profile,
+            R.string.action_open_credit_and_bank,
+            R.string.desc_open_credit_and_bank,
+        ) {
+            val intent = Intent(requireContext(), AddPaymentMethodActivity::class.java)
+            startActivity(intent)
+        },
+        ProfileOption(
+            R.drawable.ic_profile,
+            R.string.action_open_referals,
+            R.string.desc_open_referals,
+        ) {
+
+        },
+        ProfileOption(
+            R.drawable.ic_profile,
+            R.string.action_open_about,
+            R.string.desc_open_about,
+        ) {
+
+        },
+    )
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentProfileBinding.inflate(inflater, container, false)
+
+        binding.toolbar.title = findNavController().currentDestination?.label
+
+        binding.options.also {
+            it.adapter = ProfileOptionsAdapter(requireContext(), options)
+            it.layoutManager = LinearLayoutManager(requireContext())
+
+            it.addItemDecoration(MarginItemDecoration(12.dp))
+        }
 
         lifecycleScope.launch {
             viewModel.uiState

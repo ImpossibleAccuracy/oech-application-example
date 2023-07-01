@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:orientation="vertical"
+    tools:parentTag="android.widget.LinearLayout">
+
+    <EditText
+        android:id="@+id/address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="address"
+        android:hint="@string/hint_address"
+        android:imeOptions="actionNext"
+        android:inputType="textShortMessage"
+        android:maxLines="1"
+        android:nextFocusDown="@id/country"
+        android:textAppearance="@style/Theme.OechApp.Label" />
+
+    <EditText
+        android:id="@+id/country"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="county"
+        android:hint="@string/hint_country"
+        android:imeOptions="actionNext"
+        android:inputType="textShortMessage"
+        android:maxLines="1"
+        android:nextFocusDown="@id/phone"
+        android:textAppearance="@style/Theme.OechApp.Label" />
+
+    <EditText
+        android:id="@+id/phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="phone"
+        android:hint="@string/hint_phone"
+        android:imeOptions="actionNext"
+        android:inputType="phone"
+        android:maxLines="1"
+        android:nextFocusDown="@id/others"
+        android:textAppearance="@style/Theme.OechApp.Label" />
+
+    <EditText
+        android:id="@+id/others"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="others"
+        android:hint="@string/hint_others"
+        android:imeOptions="actionDone"
+        android:inputType="textShortMessage"
+        android:maxLines="1"
+        android:textAppearance="@style/Theme.OechApp.Label" />
+</merge>

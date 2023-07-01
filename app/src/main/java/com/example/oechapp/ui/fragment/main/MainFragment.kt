@@ -1,5 +1,6 @@
 package com.example.oechapp.ui.fragment.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.oechapp.R
 import com.example.oechapp.databinding.FragmentMainBinding
+import com.example.oechapp.ui.activity.send_package.SendPackageActivity
+import com.example.oechapp.ui.utils.MarginItemDecoration
+import com.example.oechapp.ui.utils.dp
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
@@ -30,21 +35,22 @@ class MainFragment : Fragment() {
 
         },
         MainAction(
-            R.drawable.ic_call_centre,
+            R.drawable.ic_reports,
+            R.string.title_onboard_1,
+            R.string.desc_onboard_1
+        ) {
+            val intent = Intent(requireContext(), SendPackageActivity::class.java)
+            startActivity(intent)
+        },
+        MainAction(
+            R.drawable.ic_notification,
             R.string.title_onboard_1,
             R.string.desc_onboard_1
         ) {
 
         },
         MainAction(
-            R.drawable.ic_call_centre,
-            R.string.title_onboard_1,
-            R.string.desc_onboard_1
-        ) {
-
-        },
-        MainAction(
-            R.drawable.ic_call_centre,
+            R.drawable.ic_profile,
             R.string.title_onboard_1,
             R.string.desc_onboard_1
         ) {
@@ -69,12 +75,15 @@ class MainFragment : Fragment() {
                 }
         }
 
-        binding.actions.adapter = MainActionsAdapter(
-            requireContext(), actions
-        )
+        binding.actions.let {
+            it.adapter = MainActionsAdapter(
+                requireContext(),
+                actions
+            )
 
-        binding.actions.setOnItemClickListener { _, _, position, _ ->
-            actions[position].action.invoke()
+            it.layoutManager = GridLayoutManager(requireContext(), 2)
+
+            it.addItemDecoration(MarginItemDecoration(12.dp))
         }
 
         return binding.root

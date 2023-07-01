@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/send_package_nav_graph"
+    app:startDestination="@id/enter_details">
+
+    <fragment
+        android:id="@+id/enter_details"
+        android:name="com.example.oechapp.ui.fragment.send_package.enter.EnterOrderDetailsFragment">
+        <action
+            android:id="@+id/action_enter_details_to_confirm_details"
+            app:destination="@id/confirm_details" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/confirm_details"
+        android:name="com.example.oechapp.ui.fragment.send_package.confirm.ConfirmOrderDetailsFragment">
+        <action
+            android:id="@+id/action_confirm_details_to_enter_details"
+            app:destination="@id/enter_details" />
+        <action
+            android:id="@+id/action_confirm_details_to_process_order"
+            app:destination="@id/process_order" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/process_order"
+        android:name="com.example.oechapp.ui.fragment.send_package.process.ProcessOrderFragment" />
+</navigation>

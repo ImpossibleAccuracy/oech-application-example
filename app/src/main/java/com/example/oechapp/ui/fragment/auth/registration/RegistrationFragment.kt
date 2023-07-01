@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.oechapp.data.model.Resource
 import com.example.oechapp.databinding.FragmentRegistrationBinding
 import com.example.oechapp.databinding.LayoutSignupActionsBinding
-import com.example.oechapp.ui.activity.routing.ApplicationRouter
 import com.example.oechapp.ui.validator.EmailValidator
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.AppBarLayout
+        style="@style/Widget.MaterialComponents.AppBarLayout.Surface"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="?android:attr/colorBackground"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            style="@style/Widget.MaterialComponents.Toolbar.Surface"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="?android:attr/colorBackground"
+            app:navigationIcon="@drawable/ic_arrow_square_left"
+            app:navigationIconTint="?attr/colorPrimary"
+            app:titleCentered="true"
+            app:titleTextAppearance="@style/Theme.OechApp.LargeLabel"
+            app:titleTextColor="?android:attr/textColorSecondary" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingHorizontal="@dimen/activity_padding_horizontal"
+        android:paddingVertical="@dimen/activity_padding_vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/origin_details"
+                    layout="@layout/item_origin_details_inputs" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/destinations"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_destination_details_inputs" />
+
+                <TextView
+                    android:id="@+id/add_destination"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:drawablePadding="8dp"
+                    android:text="@string/action_add_destination"
+                    android:textAppearance="@style/Theme.OechApp.SmallLabel"
+                    app:drawableStartCompat="@drawable/ic_add_square"
+                    app:drawableTint="?attr/colorPrimary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_package_details"
+                    android:textAppearance="@style/Theme.OechApp.Label"
+                    android:textColor="?android:attr/textColorPrimary" />
+
+                <EditText
+                    android:id="@+id/package_items"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="county"
+                    android:hint="@string/hint_package_items"
+                    android:imeOptions="actionNext"
+                    android:inputType="textShortMessage"
+                    android:maxLines="1"
+                    android:nextFocusDown="@id/items_weight"
+                    android:textAppearance="@style/Theme.OechApp.Label" />
+
+                <EditText
+                    android:id="@+id/items_weight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="phone"
+                    android:hint="@string/hint_items_weight"
+                    android:imeOptions="actionNext"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:nextFocusDown="@id/items_worth"
+                    android:textAppearance="@style/Theme.OechApp.Label" />
+
+                <EditText
+                    android:id="@+id/items_worth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="others"
+                    android:hint="@string/hint_items_worth"
+                    android:imeOptions="actionDone"
+                    android:inputType="textShortMessage"
+                    android:maxLines="1"
+                    android:textAppearance="@style/Theme.OechApp.Label" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_select_delivery_type"
+                    android:textAppearance="@style/Theme.OechApp.Label"
+                    android:textColor="?android:attr/textColorPrimary" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/instant_delivery"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="@string/action_instant_delivery"
+                        android:textAllCaps="false"
+                        android:textAppearance="@style/Theme.OechApp.Label"
+                        app:icon="@drawable/ic_notification"
+                        app:iconGravity="textTop" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/scheduled_delivery"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="24dp"
+                        android:layout_weight="1"
+                        android:text="@string/action_scheduled_delivery"
+                        android:textAllCaps="false"
+                        android:textAppearance="@style/Theme.OechApp.Label"
+                        android:textColor="?android:attr/textColorSecondary"
+                        app:backgroundTint="?attr/colorSurface"
+                        app:icon="@drawable/ic_notification"
+                        app:iconGravity="textTop"
+                        app:iconTint="?android:attr/textColorSecondary" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
