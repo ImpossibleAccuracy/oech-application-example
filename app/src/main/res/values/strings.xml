@@ -64,4 +64,6 @@
     <string name="action_sign_up">Sign Up</string>
     <string name="title_greeting">Heelo, %s</string>
     <string name="desc_greetings">We trust you are having a great time</string>
+    <string name="action_enable_dark_mode">Enable dark Mode</string>
+    <string name="action_logout">Logout</string>
 </resources>

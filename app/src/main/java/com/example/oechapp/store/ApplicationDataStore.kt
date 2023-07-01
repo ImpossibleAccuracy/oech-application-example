@@ -8,6 +8,7 @@ import androidx.datastore.preferences.preferencesDataStore
 
 object ApplicationDataStore {
     val IS_ONBOARD_VISITED = booleanPreferencesKey("IsOnboardVisited")
+    val IS_BALANCE_VISIBLE = booleanPreferencesKey("IsBalanceVisible")
 }
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "application")

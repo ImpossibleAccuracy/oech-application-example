@@ -10,5 +10,5 @@ interface RemoteAuthDataSource {
 
     suspend fun login(email: String, password: String): Boolean
 
-    suspend fun isAuthenticated(): Boolean
+    suspend fun logout()
 }

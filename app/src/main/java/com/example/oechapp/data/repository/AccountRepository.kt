@@ -11,14 +11,24 @@ class AccountRepository @Inject constructor(
     private val authDataSource: RemoteAuthDataSource,
     private val accountDataSource: RemoteAccountDataSource
 ) {
+    suspend fun logout() =
+        withContext(Dispatchers.IO) {
+            authDataSource.logout()
+        }
+
     suspend fun getAccountName(): String? =
         withContext(Dispatchers.IO) {
             accountDataSource.getAccountName()
         }
-    
+
+    suspend fun getAccountBalance(): Int =
+        withContext(Dispatchers.IO) {
+            accountDataSource.getAccountBalance()
+        }
+
     suspend fun isAuthenticated(): Boolean =
         withContext(Dispatchers.IO) {
-            authDataSource.isAuthenticated()
+            accountDataSource.isAuthenticated()
         }
 
     suspend fun register(

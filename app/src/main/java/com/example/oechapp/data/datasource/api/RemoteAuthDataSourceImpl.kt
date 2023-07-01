@@ -47,12 +47,12 @@ class RemoteAuthDataSourceImpl @Inject constructor(
             false
         }
 
-    override suspend fun isAuthenticated(): Boolean =
+    override suspend fun logout() {
         try {
-            client.gotrue.retrieveUserForCurrentSession(updateSession = true)
-            true
+            client.gotrue.logout()
         } catch (t: Throwable) {
             Log.e(RemoteAuthDataSource::class.simpleName, t.message ?: "Error handled")
-            false
+            t.printStackTrace()
         }
+    }
 }
