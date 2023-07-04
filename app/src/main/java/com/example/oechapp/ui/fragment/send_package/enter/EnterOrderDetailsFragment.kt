@@ -1,11 +1,14 @@
 package com.example.oechapp.ui.fragment.send_package.enter
 
+import android.Manifest
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.text.isDigitsOnly
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
@@ -18,14 +21,30 @@ import com.example.oechapp.databinding.ItemAddressDetailsInputsBinding
 import com.example.oechapp.ui.fragment.send_package.SendPackageViewModel
 import com.example.oechapp.ui.utils.MarginItemDecoration
 import com.example.oechapp.ui.utils.dp
+import com.example.oechapp.ui.utils.hasPermission
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class EnterOrderDetailsFragment : Fragment() {
     private lateinit var binding: FragmentEnterOrderDetailsBinding
 
-    private val viewModel: SendPackageViewModel by navGraphViewModels(R.id.send_package_nav_graph)
+    private val viewModel: SendPackageViewModel by navGraphViewModels(R.id.send_package_nav_graph) {
+        defaultViewModelProviderFactory
+    }
+
+    private val requestPermissionLauncher by lazy {
+        requireActivity().registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                viewModel.loadOriginByDeviceLocation()
+            }
+        }
+    }
 
     private lateinit var adapter: DestinationsAdapter
 
@@ -42,10 +61,57 @@ class EnterOrderDetailsFragment : Fragment() {
     ): View {
         binding = FragmentEnterOrderDetailsBinding.inflate(inflater, container, false)
 
+        if (requireContext().hasPermission(Manifest.permission.ACCESS_FINE_LOCATION) &&
+            requireContext().hasPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+        ) {
+            viewModel.loadOriginByDeviceLocation()
+        } else {
+            requestPermissionLauncher.launch(Manifest.permission.ACCESS_COARSE_LOCATION)
+        }
+
+        binding.toolbar.title = getString(R.string.title_send_package)
+        binding.toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                android.R.id.home -> {
+                    if (!findNavController().navigateUp()) {
+                        requireActivity().finish()
+                    }
+
+                    true
+                }
+
+                else -> false
+            }
+        }
+
         lifecycleScope.launch {
-            viewModel.uiState.value.origin?.let { fillOrigins(it) }
+            viewModel.loadOriginByDeviceLocation()
+        }
+
+        lifecycleScope.launch {
+            viewModel.uiState
+                .flowWithLifecycle(viewLifecycleOwner.lifecycle)
+                .map { it.origin }
+                .filterNotNull()
+                .distinctUntilChanged()
+                .collect {
+                    fillOrigins(it)
+                }
+        }
+
+        lifecycleScope.launch {
+            viewModel.uiState
+                .flowWithLifecycle(viewLifecycleOwner.lifecycle)
+                .map { it.packageInfo }
+                .filterNotNull()
+                .distinctUntilChanged()
+                .collect {
+                    fillDetails(it)
+                }
+        }
+
+        lifecycleScope.launch {
             fillDestinations(viewModel.uiState.value.destinations)
-            viewModel.uiState.value.packageInfo?.let { fillDetails(it) }
         }
 
         binding.addDestination.setOnClickListener {

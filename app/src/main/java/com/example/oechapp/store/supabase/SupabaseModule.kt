@@ -40,8 +40,8 @@ object SupabaseModule {
     fun provideSupabaseClient(httpClient: HttpClient) =
         try {
             createSupabaseClient(
-                supabaseUrl = "https://hkkqucqcnvltcurkoway.supabase.co",
-                supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhra3F1Y3FjbnZsdGN1cmtvd2F5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODgwMjc0MTQsImV4cCI6MjAwMzYwMzQxNH0.TQcRsSASbroWCig7mA9EFF-9h08MWHv8OZvPH5IzByw"
+                supabaseUrl = "https://eojrsogefmmctzglurjv.supabase.co",
+                supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVvanJzb2dlZm1tY3R6Z2x1cmp2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODgzNzEzMzksImV4cCI6MjAwMzk0NzMzOX0.zsV8O4qqcrERGrnwHQ69npNG1t3EWMdtdKumsqPRyHo"
             ) {
 
                 install(Postgrest)

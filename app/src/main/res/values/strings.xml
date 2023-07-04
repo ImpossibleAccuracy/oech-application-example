@@ -96,4 +96,5 @@
     <string name="action_instant_delivery">Instant delivery</string>
     <string name="action_scheduled_delivery">Scheduled delivery</string>
     <string name="error_invalid_number">Invalid number format</string>
+    <string name="title_send_package">Send a package</string>
 </resources>
